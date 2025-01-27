@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Task</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <form action="{{ url_for('update_task', task_id=task.id) }}" method="POST" class="bg-white p-6 rounded shadow w-96">
+        <h1 class="text-xl font-bold mb-4 text-center">Update Task</h1>
+        <div class="mb-4">
+            <label for="title" class="block font-medium">Title:</label>
+            <input type="text" id="title" name="title" value="{{ task.title }}" class="w-full p-2 border rounded"
+                required>
+        </div>
+        <div class="mb-4">
+            <label for="description" class="block font-medium">Description:</label>
+            <input type="text" id="description" name="description" value="{{ task.description }}"
+                class="w-full p-2 border rounded" required>
+        </div>
+        <div class="mb-4">
+            <label for="status" class="block font-medium">Status:</label>
+            <select id="status" name="status" class="w-full p-2 border rounded">
+                <option value="pending" {% if task.status=='pending' %}selected{% endif %}>Pending</option>
+                <option value="in-progress" {% if task.status=='in-progress' %}selected{% endif %}>In Progress</option>
+                <option value="completed" {% if task.status=='completed' %}selected{% endif %}>Completed</option>
+            </select>
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full">Update
+            Task</button>
+    </form>
+</body>
+
+</html>
